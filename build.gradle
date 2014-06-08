@@ -1,0 +1,67 @@
+buildscript {
+    repositories {
+        maven {
+            url uri('../repo')
+        }
+        jcenter()
+        maven {
+            name 'Bintray Asciidoctor repo'
+            url  'http://dl.bintray.com/content/aalmiray/asciidoctor'
+        }
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath (group: 'org.aim42',
+                name: 'htmlSanityCheck',
+                version: '0.2-SNAPSHOT')
+
+        classpath (group: 'org.asciidoctor',
+                    name: 'asciidoctor-gradle-plugin',
+                    version: '0.7.0')
+    }
+}
+
+
+// ==== asciidoctor ==========
+
+apply plugin: 'asciidoctor'
+
+asciidoctor {
+    outputDir = new File("${buildDir}/docs")
+    baseDir = project.file('src/asciidoc')
+    sourceDocumentName = project.file('./src/asciidoc/tryme.adoc')
+
+}
+
+
+// ==== see that images are copied into build/docs directory =====
+task copyImages(
+        type: Copy,
+        description: 'copy images into build output folder can be resolved '
+) {
+    from 'src/images'
+    into './build/docs/images'
+}
+
+copyImages.mustRunAfter asciidoctor
+
+
+apply plugin: 'htmlSanityCheck'
+
+htmlSanityCheck {
+    // ensure asciidoctor->html runs first
+    // and images are copied to build directory
+    dependsOn asciidoctor, copyImages
+
+    // make the asciidoctor output directory/file our input...
+    outputDir = new File("${buildDir}/docs")
+    sourceDir = project.file("${outputDir}")
+    sourceDocumentName = project.file("${sourceDir}/tryme.html")
+    imageDir = new File("${outputDir}/images")
+
+    checkExternalLinks = false
+
+
+
+}
