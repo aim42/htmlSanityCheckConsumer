@@ -54,6 +54,7 @@ htmlSanityCheck {
     // and images are copied to build directory
     dependsOn asciidoctor, copyImages
 
+    //verbose = false
     // make the asciidoctor output directory/file our input...
     outputDir = new File("${buildDir}/docs")
     sourceDir = project.file("${outputDir}")
@@ -61,7 +62,5 @@ htmlSanityCheck {
     imageDir = new File("${outputDir}/images")
 
     checkExternalLinks = false
-
-
 
 }
