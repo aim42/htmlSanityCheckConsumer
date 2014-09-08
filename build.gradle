@@ -22,16 +22,45 @@ buildscript {
     }
 }
 
+// ==== path definitions =====
+// ===========================
+
+// location of AsciiDoc files
+def asciidocSrcPath = "$projectDir/src/asciidoc"
+
+// location of images used in AsciiDoc documentation
+def srcImagesPath = "$asciidocSrcPath/images"
+
+// results of asciidoc compilitation (HTML) is stored
+def htmlOutputPath = "$buildDir/docs"
+
+// images used by generated html
+def targetImagesPath =   htmlOutputPath + "/images"
+
+// where HTMLSanityCheck checkingresults ares stored
+def checkingResultsPath = "$buildDir/report/"
+
+// what file to check
+// TODO: convert to FileCollection for 1.5.1
+def inputFileName = "tryme"
+
+def inputFilePath = asciidocSrcPath + "/" + inputFileName + ".adoc"
+
 
 // ==== asciidoctor ==========
+// ===========================
 
 apply plugin: 'org.asciidoctor.gradle.asciidoctor'
 
-
 asciidoctor {
-    outputDir = new File("${buildDir}/docs")
-    baseDir = project.file('src/asciidoc')
-    sourceDocumentNames = files( new File('./src/asciidoc/tryme.adoc'))
+    outputDir = new File( htmlOutputPath )
+    //baseDir = project.file('src/asciidoc')
+    sourceDocumentNames = files( new File( inputFilePath ))
+    options = [
+            attributes: [
+                    imagesdir   : 'images'
+            ]
+    ]
 
 }
 
@@ -41,9 +70,11 @@ task copyImages(
         type: Copy,
         description: 'copy images into build output folder can be resolved '
 ) {
-    from 'src/images'
-    into './build/docs/images'
+    from srcImagesPath
+    into targetImagesPath
+    include( '**/*.jpg', '**/*.png', '**/*.svg')
 }
+
 
 copyImages.mustRunAfter asciidoctor
 
@@ -57,15 +88,31 @@ htmlSanityCheck {
 
     //verbose = false
     // make the asciidoctor output directory/file our input directory (aka sourceDir)...
-    sourceDir = project.file("${outputDir}")
+    sourceDir = project.file( htmlOutputPath )
 
     // imageDir needs to be relative to sourceDir
-    imageDir = new File("${outputDir}/images")
+    imageDir = new File( targetImagesPath )
 
 
-    outputDir = new File("${buildDir}/docs")
-    sourceDocumentName = project.file("${sourceDir}/tryme.html")
+    outputDir = new File( checkingResultsPath )
+    sourceDocumentName = project.file( htmlOutputPath + "/" + inputFileName + ".html")
 
     checkExternalLinks = false
 
 }
+
+
+task info(
+        description: "info on several paths"
+) <<
+        {
+            println "project.name         : " + project.name
+            println "projectDir           : " + projectDir
+            println "buildDir             : " + buildDir
+            println "="*100
+            println "asciidoc src files   : " + asciidocSrcPath
+            println "source images        : " + srcImagesPath
+            println "asciidoc html output : " + htmlOutputPath
+            println "target images path   : " + targetImagesPath
+            println "checkingResultsPath  : " + checkingResultsPath
+        }
