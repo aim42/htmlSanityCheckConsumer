@@ -14,7 +14,7 @@ buildscript {
     dependencies {
         classpath (group: 'org.aim42',
                 name: 'htmlSanityCheck',
-                version: '0.2-SNAPSHOT')
+                version: '0.2.0-SNAPSHOT')
 
         classpath (group: 'org.asciidoctor',
                     name: 'asciidoctor-gradle-plugin',
