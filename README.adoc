@@ -1,6 +1,14 @@
 = Html Sanity Check *Consumer*
+:experimental:
 
 
-A (dummy) consumer of the htmlSanityCheck Gradle plugin
+A (dummy) consumer of the htmlSanityCheck Gradle plugin.
 
+Contains the following asciidoc file
+containing several errors,
+which the kbd:[HtmlSC] shall detect:
+
+---
+ ./src/asciidoc/tryme.adoc
+---
 
