@@ -18,19 +18,20 @@ buildscript {
 
         classpath (group: 'org.asciidoctor',
                     name: 'asciidoctor-gradle-plugin',
-                    version: '0.7.0')
+                    version: '1.5.0')
     }
 }
 
 
 // ==== asciidoctor ==========
 
-apply plugin: 'asciidoctor'
+apply plugin: 'org.asciidoctor.gradle.asciidoctor'
+
 
 asciidoctor {
     outputDir = new File("${buildDir}/docs")
     baseDir = project.file('src/asciidoc')
-    sourceDocumentName = project.file('./src/asciidoc/tryme.adoc')
+    sourceDocumentNames = files( new File('./src/asciidoc/tryme.adoc'))
 
 }
 
@@ -55,11 +56,15 @@ htmlSanityCheck {
     dependsOn asciidoctor, copyImages
 
     //verbose = false
-    // make the asciidoctor output directory/file our input...
-    outputDir = new File("${buildDir}/docs")
+    // make the asciidoctor output directory/file our input directory (aka sourceDir)...
     sourceDir = project.file("${outputDir}")
-    sourceDocumentName = project.file("${sourceDir}/tryme.html")
+
+    // imageDir needs to be relative to sourceDir
     imageDir = new File("${outputDir}/images")
+
+
+    outputDir = new File("${buildDir}/docs")
+    sourceDocumentName = project.file("${sourceDir}/tryme.html")
 
     checkExternalLinks = false
 
