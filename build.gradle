@@ -32,19 +32,22 @@ def asciidocSrcPath = "$projectDir/src/asciidoc"
 def srcImagesPath = "$asciidocSrcPath/images"
 
 // results of asciidoc compilitation (HTML) is stored
+// (input for htmlSanityCheck)
 def htmlOutputPath = "$buildDir/docs"
-
-// images used by generated html
-def targetImagesPath =   htmlOutputPath + "/images"
 
 // where HTMLSanityCheck checkingresults ares stored
 def checkingResultsPath = "$buildDir/report/"
 
-// what file to check
 // TODO: convert to FileCollection for 1.5.1
+
+// what file to process
 def inputFileName = "tryme"
 
-def inputFilePath = asciidocSrcPath + "/" + inputFileName + ".adoc"
+// what file to convert from asciidoc to html
+def fileToConvertPath = asciidocSrcPath + "/" + inputFileName + ".adoc"
+
+// what file to check
+def fileToCheckPath = htmlOutputPath + "/" + inputFileName + ".html"
 
 
 // ==== asciidoctor ==========
@@ -55,7 +58,7 @@ apply plugin: 'org.asciidoctor.gradle.asciidoctor'
 asciidoctor {
     outputDir = new File( htmlOutputPath )
     //baseDir = project.file('src/asciidoc')
-    sourceDocumentNames = files( new File( inputFilePath ))
+    sourceDocumentNames = files( new File( fileToConvertPath ))
     options = [
             attributes: [
                     imagesdir   : 'images'
@@ -65,7 +68,7 @@ asciidoctor {
 }
 
 
-// ==== see that images are copied into build/docs directory =====
+// ==== copy images into build/docs directory =====
 task copyImages(
         type: Copy,
         description: 'copy images into build output folder can be resolved '
@@ -81,25 +84,24 @@ copyImages.mustRunAfter asciidoctor
 
 apply plugin: 'htmlSanityCheck'
 
+
 htmlSanityCheck {
+
     // ensure asciidoctor->html runs first
     // and images are copied to build directory
-    dependsOn asciidoctor, copyImages
+    // TODO: commented to allow checking of other files...
+    //dependsOn asciidoctor, copyImages
 
-    //verbose = false
-    // make the asciidoctor output directory/file our input directory (aka sourceDir)...
-    sourceDir = project.file( htmlOutputPath )
+    // what file to check
+    fileToCheck = new File ( fileToCheckPath )
 
-    // imageDir needs to be relative to sourceDir
-    imageDir = new File( targetImagesPath )
+  // where to put results of sanityChecks...
+    checkingResultsDir = new File( checkingResultsPath )
 
-
-    outputDir = new File( checkingResultsPath )
-    sourceDocumentName = project.file( htmlOutputPath + "/" + inputFileName + ".html")
-
-    checkExternalLinks = false
-
+    checkExternalLinks = true
 }
+
+htmlSanityCheck.mustRunAfter asciidoctor
 
 
 task info(
@@ -111,8 +113,6 @@ task info(
             println "buildDir             : " + buildDir
             println "="*100
             println "asciidoc src files   : " + asciidocSrcPath
-            println "source images        : " + srcImagesPath
             println "asciidoc html output : " + htmlOutputPath
-            println "target images path   : " + targetImagesPath
             println "checkingResultsPath  : " + checkingResultsPath
         }
