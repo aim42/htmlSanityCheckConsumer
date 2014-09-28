@@ -35,6 +35,9 @@ def srcImagesPath = "$asciidocSrcPath/images"
 // (input for htmlSanityCheck)
 def htmlOutputPath = "$buildDir/docs"
 
+// images used by generated html
+def targetImagesPath =   htmlOutputPath + "/images"
+
 // where HTMLSanityCheck checkingresults ares stored
 def checkingResultsPath = "$buildDir/report/"
 
@@ -57,7 +60,6 @@ apply plugin: 'org.asciidoctor.gradle.asciidoctor'
 
 asciidoctor {
     outputDir = new File( htmlOutputPath )
-    //baseDir = project.file('src/asciidoc')
     sourceDocumentNames = files( new File( fileToConvertPath ))
     options = [
             attributes: [
@@ -89,13 +91,13 @@ htmlSanityCheck {
 
     // ensure asciidoctor->html runs first
     // and images are copied to build directory
-    // TODO: commented to allow checking of other files...
+    // TODO: commented to allow checking of other files..
     //dependsOn asciidoctor, copyImages
 
     // what file to check
     fileToCheck = new File ( fileToCheckPath )
 
-  // where to put results of sanityChecks...
+    // where to put results of sanityChecks...
     checkingResultsDir = new File( checkingResultsPath )
 
     checkExternalLinks = true
@@ -113,6 +115,8 @@ task info(
             println "buildDir             : " + buildDir
             println "="*100
             println "asciidoc src files   : " + asciidocSrcPath
+            println "source images        : " + srcImagesPath
             println "asciidoc html output : " + htmlOutputPath
+            println "target images path   : " + targetImagesPath
             println "checkingResultsPath  : " + checkingResultsPath
         }
