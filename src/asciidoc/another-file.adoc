@@ -1,0 +1,16 @@
+= A Short Asciidoc Test Document
+
+
+// where are images located?
+:imagesdir: ./images
+
+[.lead]
+This document is overly small and contains
+no deliberate errors in the asciidoc source
+
+
+// this generates a mailto: link...
+Authored by the Dr. Gernot Starke <gernot.starke@innoq.com>
+
+
+

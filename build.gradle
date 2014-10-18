@@ -38,19 +38,9 @@ def htmlOutputPath = "$buildDir/docs"
 // images used by generated html
 def targetImagesPath =   htmlOutputPath + "/images"
 
-// where HTMLSanityCheck checkingresults ares stored
-def checkingResultsPath = "$buildDir/report/"
+// where HTMLSanityCheck checking results ares stored
+def checkingResultsPath = "$buildDir/report/htmlchecks"
 
-// TODO: convert to FileCollection for 1.5.1
-
-// what file to process
-def inputFileName = "tryme"
-
-// what file to convert from asciidoc to html
-def fileToConvertPath = asciidocSrcPath + "/" + inputFileName + ".adoc"
-
-// what file to check
-def fileToCheckPath = htmlOutputPath + "/" + inputFileName + ".html"
 
 
 // ==== asciidoctor ==========
@@ -60,7 +50,7 @@ apply plugin: 'org.asciidoctor.gradle.asciidoctor'
 
 asciidoctor {
     outputDir = new File( htmlOutputPath )
-    sourceDocumentNames = files( new File( fileToConvertPath ))
+    sourceDir = new File( asciidocSrcPath )
     options = [
             attributes: [
                     imagesdir   : 'images'
@@ -73,12 +63,21 @@ asciidoctor {
 // ==== copy images into build/docs directory =====
 task copyImages(
         type: Copy,
-        description: 'copy images into build output folder can be resolved '
+        description: 'copy images into build output folder'
 ) {
     from srcImagesPath
     into targetImagesPath
     include( '**/*.jpg', '**/*.png', '**/*.svg')
 }
+
+
+// ==== copy css stylesheet into report directory ====
+//task copyResources( type: Copy,
+//    description: 'copy css into checking results folder')
+//   {
+
+//}
+
 
 
 copyImages.mustRunAfter asciidoctor
@@ -91,16 +90,19 @@ htmlSanityCheck {
 
     // ensure asciidoctor->html runs first
     // and images are copied to build directory
-    // TODO: commented to allow checking of other files..
-    //dependsOn asciidoctor, copyImages
 
-    // what file to check
-    fileToCheck = new File ( fileToCheckPath )
+    // TODO: commented to allow checking of other files..
+    dependsOn asciidoctor, copyImages
+
+    sourceDir = new File( htmlOutputPath )
+
+    // files to check - in Set-notation
+    sourceDocuments = [ "one-file.html", "another-file.html"]
 
     // where to put results of sanityChecks...
     checkingResultsDir = new File( checkingResultsPath )
 
-    checkExternalLinks = true
+    checkExternalLinks = false
 }
 
 htmlSanityCheck.mustRunAfter asciidoctor
