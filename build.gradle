@@ -92,12 +92,12 @@ htmlSanityCheck {
     // and images are copied to build directory
 
     // TODO: commented to allow checking of other files..
-    dependsOn asciidoctor, copyImages
+   // dependsOn asciidoctor, copyImages
 
     sourceDir = new File( htmlOutputPath )
 
     // files to check - in Set-notation
-    sourceDocuments = [ "one-file.html", "another-file.html"]
+    sourceDocuments = [ "one-file.html", "another-file.html", "index.html"]
 
     // where to put results of sanityChecks...
     checkingResultsDir = new File( checkingResultsPath )
