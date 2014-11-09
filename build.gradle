@@ -14,7 +14,7 @@ buildscript {
     dependencies {
         classpath (group: 'org.aim42',
                 name: 'htmlSanityCheck',
-                version: '0.2.0-SNAPSHOT')
+                version: '0.8.0')
 
         classpath (group: 'org.asciidoctor',
                     name: 'asciidoctor-gradle-plugin',
@@ -83,7 +83,7 @@ task copyImages(
 copyImages.mustRunAfter asciidoctor
 
 
-apply plugin: 'htmlSanityCheck'
+apply plugin: 'org.aim42.htmlSanityCheck'
 
 
 htmlSanityCheck {
