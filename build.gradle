@@ -1,3 +1,4 @@
+
 buildscript {
     repositories {
         maven {
@@ -8,13 +9,17 @@ buildscript {
             name 'Bintray Asciidoctor repo'
             url  'http://dl.bintray.com/content/aalmiray/asciidoctor'
         }
+        maven {
+            name 'Bintray HtmlSanityCheck repo'
+            url 'http://dl.bintray.com/content/gernotstarke/HtmlSanityCheck'
+        }
         mavenCentral()
     }
 
     dependencies {
         classpath (group: 'org.aim42',
                 name: 'htmlSanityCheck',
-                version: '0.8.0')
+                version: '0.7.2')
 
         classpath (group: 'org.asciidoctor',
                     name: 'asciidoctor-gradle-plugin',
@@ -71,13 +76,6 @@ task copyImages(
 }
 
 
-// ==== copy css stylesheet into report directory ====
-//task copyResources( type: Copy,
-//    description: 'copy css into checking results folder')
-//   {
-
-//}
-
 
 
 copyImages.mustRunAfter asciidoctor
@@ -91,21 +89,21 @@ htmlSanityCheck {
     // ensure asciidoctor->html runs first
     // and images are copied to build directory
 
-    // TODO: commented to allow checking of other files..
-   // dependsOn asciidoctor, copyImages
+    // comment next line to allow checking of other files..
+    dependsOn asciidoctor, copyImages
 
     sourceDir = new File( htmlOutputPath )
 
-    // files to check - in Set-notation
+    // files to check, in Set-notation
     sourceDocuments = [ "one-file.html", "another-file.html", "index.html"]
 
     // where to put results of sanityChecks...
     checkingResultsDir = new File( checkingResultsPath )
 
+    // false: restrict checks to local resources
+    // true:  also check external (e.g. http, https...) links. 
     checkExternalLinks = false
 }
-
-htmlSanityCheck.mustRunAfter asciidoctor
 
 
 task info(
