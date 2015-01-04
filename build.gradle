@@ -95,13 +95,13 @@ htmlSanityCheck {
     sourceDir = new File( htmlOutputPath )
 
     // files to check, in Set-notation
-    sourceDocuments = [ "one-file.html", "another-file.html", "index.html"]
+    sourceDocuments = [ "many-errors.html", "no-errors.html"]
 
     // where to put results of sanityChecks...
     checkingResultsDir = new File( checkingResultsPath )
 
     // false: restrict checks to local resources
-    // true:  also check external (e.g. http, https...) links. 
+    // true:  also check external (e.g. http, https...) links.
     checkExternalLinks = false
 }
 
