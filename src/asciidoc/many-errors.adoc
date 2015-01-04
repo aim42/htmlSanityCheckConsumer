@@ -13,6 +13,9 @@ in the asciidoc source. It shall be used to test the htmlSanityChecker.
 Authored by the aim42 community, lead by Dr. Gernot Starke <gernot.starke@innoq.com>
 
 
+// tag::html-with-errors[]
+
+
 [[first]]
 == Wrong Internal Links
 
@@ -27,6 +30,7 @@ Wrong (non-existing) link::
 
 Existing external link::
   points to https://github.com/aim42
+
 
 
 
@@ -53,3 +57,5 @@ image:aim42-logo.png[aim-logo]
 
 Missing image::
 image:nonexisting-image.png[this image deliberately missing]
+
+//end:html-with-errors[]
