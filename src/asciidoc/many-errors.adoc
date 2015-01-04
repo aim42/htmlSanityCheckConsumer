@@ -13,6 +13,7 @@ in the asciidoc source. It shall be used to test the htmlSanityChecker.
 Authored by the aim42 community, lead by Dr. Gernot Starke <gernot.starke@innoq.com>
 
 
+
 // tag::html-with-errors[]
 
 
@@ -31,6 +32,22 @@ Wrong (non-existing) link::
 Existing external link::
   points to https://github.com/aim42
 
+=== Background
+
+Html anchor tags contain href attributes, which denote
+the link-target (where the browser shall jump when the appropriate
+link is clicked).
+
+Example:
+
+[source,html]
+----
+<a href="missing">missing link</a>
+
+<h1 id="existing">Sample Header</h1>
+<a href="existing"> jump to the sample header</a>
+
+----
 
 
 
