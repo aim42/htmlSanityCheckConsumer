@@ -1,12 +1,16 @@
 = Html Sanity Check *Consumer*
 :experimental:
 
+image:http://img.shields.io/:license-ccsa4-green.svg[link="https://creativecommons.org/licenses/by-sa/4.0/"^]
+image:https://badge.waffle.io/aim42/htmlSanityCheckConsumer.png?label=issue&title=issues[link=""^]
 
-A (dummy) consumer of the htmlSanityCheck Gradle plugin.
+A (dummy) consumer of the https://github.com/aim42/htmlSanityCheck[htmlSanityCheck] 
+Gradle plugin.
 
-Contains the following asciidoc file
-containing several errors,
-which the kbd:[HtmlSC] shall detect:
+Contains a few asciidoc files to show
+typical semantic errors in html files 
+(which, of course, the kbd:[HtmlSC] checker will detect and report).
+
 
 ----
  ./src/asciidoc/tryme.adoc
