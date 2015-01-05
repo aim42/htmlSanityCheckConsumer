@@ -12,12 +12,26 @@ Contains a few asciidoc files to show
 typical semantic errors in html files 
 (which, of course, kbd:[HtmlSC] checker will detect and report).
 
-The explanation of these errors are included from the following file:
 
+== Usage
+Checkout from Github, then invoke the following commands:
+
+    gradle htmlSanityCheck
+
+Gradle will download all required libraries, compile the asciidoctor
+source files into html and invoke the kbd:[HtmlSC] itself. You'll find
+the checking results in
+
+    build/reports/htmlchecks/index.html
+    
+    
+== File Containing Many Errors
 ----
  ./src/asciidoc/many-errors.adoc
 ----
   
+(Github does not allow file-includes in this readme, therefore you currently
+have to look at that file to get the explanation...)
 
-include::./src/asciidoc/many-errors.adoc[tags="html-with-errors"]
+
 
