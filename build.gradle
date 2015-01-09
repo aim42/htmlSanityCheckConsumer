@@ -18,8 +18,8 @@ buildscript {
 
     dependencies {
         classpath (group: 'org.aim42',
-                name: 'htmlSanityCheck',
-                version: '0.7.2')
+                name: 'HtmlSanityCheck-gradle-plugin',
+                version: '0.5.3')
 
         classpath (group: 'org.asciidoctor',
                     name: 'asciidoctor-gradle-plugin',
@@ -81,7 +81,7 @@ task copyImages(
 copyImages.mustRunAfter asciidoctor
 
 
-apply plugin: 'org.aim42.htmlSanityCheck'
+apply plugin: 'org.aim42.HtmlSanityCheck-gradle-plugin'
 
 
 htmlSanityCheck {
@@ -95,13 +95,13 @@ htmlSanityCheck {
     sourceDir = new File( htmlOutputPath )
 
     // files to check, in Set-notation
-    sourceDocuments = [ "one-file.html", "another-file.html", "index.html"]
+    sourceDocuments = [ "many-errors.html", "no-errors.html"]
 
     // where to put results of sanityChecks...
     checkingResultsDir = new File( checkingResultsPath )
 
     // false: restrict checks to local resources
-    // true:  also check external (e.g. http, https...) links. 
+    // true:  also check external (e.g. http, https...) links.
     checkExternalLinks = false
 }
 
