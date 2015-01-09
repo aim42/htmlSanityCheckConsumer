@@ -32,7 +32,7 @@ Wrong (non-existing) link::
 Existing external link::
   points to https://github.com/aim42
 
-==== Background
+=== Background
 
 Html anchor tags contain href attributes, which denote
 the link-target (where the browser shall jump when the appropriate
@@ -94,16 +94,16 @@ ImageMaps allow parts of an image
 to be used as hyperlinks to arbitrary targets. 
 
 
-==== A correct ImageMap
+=== A correct ImageMap
 The tricky part is that ImageMaps need two html tags to work:
 
 See the following example for a correct ImageMap (in html source)
 
 [source,html]
 ----
-<img src="image.jpg" usemap="#yourmap"> //<1>
-<map name="yourmap"> //<2>
-  <area shape="rect" coords="0,0,1,1" href="#test1"> //<3>
+<img src="image.jpg" usemap="#yourmap"> // <1>
+<map name="yourmap"> // <2>
+  <area shape="rect" coords="0,0,1,1" href="#test1"> // <3>
   <area shape="circle" coords="0,1,1" href="#test2">
 </map>
 ----
@@ -112,28 +112,29 @@ See the following example for a correct ImageMap (in html source)
 <2> the actual map, defining a number of click-sensitive
 <3> areas on the image together with the respective link targets.
 
-==== Dangling Map (Without Reference) 
+
+=== Dangling Map (Without Reference) 
 
 The following map is not referenced by an image:
 
 TODO: 
 
-==== Missing Map
+=== Missing Map
 An image references a nonexisting map.
 
 TODO: 
 
-==== Ambigous Map-Name
+=== Ambigous Map-Name
 A map-name exists more than once.
 
 TODO: 
 
-==== Empty Map
+=== Empty Map
 No area-tag defined for map.
 
 TODO: 
 
-==== Broken Link in ImageMap
+=== Broken Link in ImageMap
 A link (href) within an area-tag is broken
 
 TODO:
