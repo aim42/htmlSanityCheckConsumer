@@ -1,39 +1,43 @@
 = A Short Asciidoc Test Document
-
+:experimental:
 
 // where are images located?
 :imagesdir: ./images
 
+
 [.lead]
-This document is overly small and contains
+This document contains
 no deliberate errors in the asciidoc source
 
-
-// this generates a mailto: link...
-Authored by the Dr. Gernot Starke <gernot.starke@innoq.com>
+Authored by Dr. Gernot Starke <gernot.starke@innoq.com>
 
 
 
-== ImageMap
+== ImageMaps
 
 // image map - created manually from OmniGraffle Export
 ++++
 <img border=0 src="images/imageMap_1.jpg" usemap="#GraffleExport">
 <map name="GraffleExport">
-	<area shape=rect coords="127,123,212,183" href="target">
+	<area shape=rect coords="127,123,212,183" href="#target">
 	<area shape=rect coords="11,36,79,92" href="#sample">
 </map>
 ++++
 
 
-[sample]
-===
-[source, html]
+[target]
+=== Target 
+
+[source, groovy]
 ----
-<img border=0 src="imageMap_1.jpg" usemap="#GraffleExport">
-<map name="GraffleExport">
-	<area shape=rect coords="127,123,212,183" href="target">
+<img border=0 src="imageMap_1.jpg" usemap="#GraffleExport"> // <1>
+<map name="GraffleExport"> // <2>
+	<area shape=rect coords="127,123,212,183" href="#target"> // <3>
 	<area shape=rect coords="11,36,79,92" href="#sample">
 </map>
 ----
+
+<1> an image (img-tag) with a "usemap" attribute.
+<2> the actual map, defining a number of click-sensitive
+<3> areas on the image together with the respective link targets.
 
