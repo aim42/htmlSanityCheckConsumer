@@ -14,3 +14,16 @@ Authored by the Dr. Gernot Starke <gernot.starke@innoq.com>
 
 
 
+== ImageMap
+
+// image map - created manually from OmniGraffle Export
+++++
+<img border=0 src="imageMap_1/imageMap_1.jpg" usemap="#GraffleExport">
+<map name="GraffleExport">
+	<area shape=rect coords="144,11,229,70" href="Canvas%201.html">
+</map>
+
+++++
+
+
+
