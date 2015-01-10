@@ -1,4 +1,4 @@
-= A Simplistic Asciidoc(tor) Test Document
+= Producing Html-Errors With Asciidoc(tor)
 :experimental:
 
 // where are images located?
@@ -10,7 +10,7 @@ in the asciidoc source. It shall be used to test the htmlSanityChecker.
 
 
 // this generates a mailto: link...
-Authored by the aim42 community, lead by Dr. Gernot Starke <gernot.starke@innoq.com>
+Authored by Gernot Starke <gernot.starke@innoq.com>
 
 
 
