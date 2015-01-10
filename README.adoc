@@ -1,7 +1,7 @@
 = image:htmlsanitycheck-logo.png[hSC] Html Sanity Check Consumer
 :experimental:
 :linkattrs:
-:source-highlighter: prettify
+:source-highlighter: pygments
 :toc:
 :toc-placement!:
 
@@ -58,6 +58,9 @@ Another file is provided, error-free:
 
 [[missing-images]]
 === Missing Images 
+More precisely, kbd:[htmlSC] looks for missing image files on the local
+file system, as it currently does NOT support checking of external resources.
+
 
 [[broken-cross-references]]
 === Broken Cross References
