@@ -31,12 +31,35 @@ Several things can go wrong here:
 
 The following map is not referenced by an image:
 
-TODO: 
+++++
+<map name="danglingmap">
+	<area shape=rect coords="11,36,79,92" href="#sample">
+</map>
+++++
+
+[source,html]
+.map not referenced by image
+----
+<map name="danglingmap">
+	<area shape=rect coords="11,36,79,92" href="#sample">
+</map>
+----
+
 
 === Missing Map
 An image references a nonexisting map.
 
-TODO: 
+++++
+<img src="image1.jpg" alt="jpg1" usemap="#nonexistingmap">
+++++
+
+
+[source,html]
+.nonexisting map
+----
+<img src="image1.jpg" alt="jpg1" usemap="#nonexistingmap">
+----
+
 
 === Ambigous Map-Name
 A map-name exists more than once.

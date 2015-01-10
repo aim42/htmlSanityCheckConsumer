@@ -68,6 +68,7 @@ referenced from anchor-tags, like the following:
 ----
 <a href="file.html">File</a> <!-- <1>-->
 ---- 
+   
     
 
 include::includes/imagemaps.adoc[]
