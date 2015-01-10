@@ -17,8 +17,6 @@ Contains a few asciidoc files to show
 typical semantic errors in html files 
 which kbd:[HtmlSC] checker will detect and report.
 
-[small]#last update {docdate}, build with Asciidoctor {asciidoctor-version}#
-
 toc::[]
 
 == Usage
@@ -125,7 +123,7 @@ See the following example for a correct ImageMap (in html source)
 <3> areas on the image together with the respective link targets.
 
 
-Several things could go wrong here:
+*Several things could go wrong with ImageMaps*
 
 . referenced map does not exist (wrong usemap or wrong map-name)
 . several maps exists with same name (ambiguous map-name)
@@ -135,6 +133,16 @@ Several things could go wrong here:
 . broken link targets in map (broken href in area-tag)
 
 
+
 [[missing-alt-attributes]]
 === Missing Alt-Attributes (in Image-Tags)
-TODO
+If the browser cannot access or render an image it will display the alternative
+text given in the alt-attribute of image-tags. 
+
+[source,html]
+<img src="image.jpg"> 
+
+
+== Stats
+[small]#last update {docdate}, build with Asciidoctor {asciidoctor-version}#
+
