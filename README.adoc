@@ -1,7 +1,7 @@
 = image:htmlsanitycheck-logo.png[hSC] Html Sanity Check Consumer
 :experimental:
 :linkattrs:
-:source-highlighter: pygments
+:source-highlighter: prettify
 :toc:
 :toc-placement!:
 
