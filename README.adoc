@@ -1,4 +1,4 @@
-= Html Sanity Check Consumer
+= image:htmlsanitycheck-logo.png[Html Sanity Check] Consumer
 :experimental:
 
 image:http://img.shields.io/:license-ccsa4-green.svg[link="https://creativecommons.org/licenses/by-sa/4.0/"^]
@@ -11,6 +11,10 @@ Gradle plugin.
 Contains a few asciidoc files to show
 typical semantic errors in html files 
 (which, of course, kbd:[HtmlSC] checker will detect and report).
+
+
+Current version 0.8.0-SNAPSHOT, last update {docdate}
+Released version 0.5.3.
 
 
 == Usage
