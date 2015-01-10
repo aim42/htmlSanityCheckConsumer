@@ -1,5 +1,10 @@
 = image:htmlsanitycheck-logo.png[hSC] Html Sanity Check Consumer
 :experimental:
+:linkattrs:
+:source-highlighter: pygments
+:toc:
+:toc-placement!:
+
 
 image:http://img.shields.io/:license-ccsa4-green.svg[link="https://creativecommons.org/licenses/by-sa/4.0/"^]
 image:http://img.shields.io/github/issues/aim42/htmlsanitycheckConsumer.svg[issues]
@@ -12,10 +17,9 @@ Contains a few asciidoc files to show
 typical semantic errors in html files 
 which kbd:[HtmlSC] checker will detect and report.
 
+[small]#last update {docdate}#
 
-
-[small#]last update {docdate}#
-
+toc::[]
 
 == Usage
 Checkout from Github, then invoke the following commands:
@@ -23,19 +27,82 @@ Checkout from Github, then invoke the following commands:
     gradle htmlSanityCheck
 
 Gradle will download all required libraries, compile the asciidoctor
-source files into html and invoke the kbd:[HtmlSC] itself. You'll find
+source files into html and invoke the kbd:[HtmlSC]. You'll find
 the checking results in
 
     build/reports/htmlchecks/index.html
     
     
-== File Containing Many Errors
+=== Files Containing Typical Errors
+
+The following file contains loads of semantic errors:
 ----
  ./src/asciidoc/many-errors.adoc
 ----
   
-(Github does not allow file-includes in this readme, therefore you currently
-have to look at that file to get the explanation...)
+Another file is provided, error-free:
+----
+ ./src/asciidoc/no-errors.adoc
+----
+
+== Types of Errors Checked by kbd:[htmlSC]
+
+- [x] <<missing-images, Missing Images>>
+- [x] <<broken-cross-references, Broken Cross References>>
+- [x] <<missing-local-resources, Missing Local Resources>>
+- [ ] Broken External Links
+- [x] <<ambiguous-link-targets, Ambiguous Link Targets>>
+- [ ] <<broken-image-maps, Broken Image Maps>>
+- [x] <<missing-alt-attributes, Missing Alt-Attribute in Image Tags>>
 
 
+[[missing-images]]
+=== Missing Images 
 
+[[broken-cross-references]]
+=== Broken Cross References
+
+[[missing-local-resoures]]
+=== Missing Local Resources
+
+[[broken-external-links]]
+=== Broken External Links
+
+[[ambiguous-link-targets]]
+=== Ambiguous Link Targets
+
+[[broken-image-maps]]
+=== Broken ImageMaps
+ImageMaps allow parts of an image to be used as hyperlinks to arbitrary targets. 
+
+ImageMaps need two html tags to work: An `<img...>` tag plus a `<map...>` tag.
+
+See the following example for a correct ImageMap (in html source)
+
+[source,html]
+----
+<img src="image.jpg" usemap="#yourmap"> // <1>
+
+<map name="yourmap"> // <2>
+  <area shape="rect" coords="0,0,1,1" href="#test1"> // <3>
+  <area shape="circle" coords="0,1,1" href="#test2">
+</map>
+----
+
+<1> an image (img-tag) with a "usemap" attribute.
+<2> the actual map, defining a number of click-sensitive
+<3> areas on the image together with the respective link targets.
+
+
+Several things could go wrong here:
+
+. referenced map does not exist (wrong usemap or wrong map-name)
+. several maps exists with same name (ambiguous map-name)
+. map not referenced (dangling map)
+. no link-targets in map (empty map)
+. link-target missing in area (empty href in area)
+. broken link targets in map (broken href in area-tag)
+
+
+[[missing-alt-attributes]]
+=== Missing Alt-Attributes (in Image-Tags)

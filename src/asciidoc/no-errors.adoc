@@ -28,10 +28,10 @@ Authored by Dr. Gernot Starke <gernot.starke@innoq.com>
 [target]
 === Target 
 
-[source, groovy]
+[source, html]
 ----
-<img border=0 src="imageMap_1.jpg" usemap="#GraffleExport"> // <1>
-<map name="GraffleExport"> // <2>
+<img border=0 src="imageMap_1.jpg" usemap="#GraffleExport">  //<1> 
+<map name="GraffleExport">  //<2>
 	<area shape=rect coords="127,123,212,183" href="#target"> // <3>
 	<area shape=rect coords="11,36,79,92" href="#sample">
 </map>
