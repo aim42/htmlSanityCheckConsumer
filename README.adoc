@@ -17,7 +17,7 @@ Contains a few asciidoc files to show
 typical semantic errors in html files 
 which kbd:[HtmlSC] checker will detect and report.
 
-[small]#last update {docdate}#
+[small]#last update {docdate}, build with Asciidoctor {asciidoctor-version}#
 
 toc::[]
 
@@ -61,15 +61,43 @@ Another file is provided, error-free:
 
 [[broken-cross-references]]
 === Broken Cross References
+[small]#(synonym: broken internal links)#
+
+Html anchor tags contain href attributes, which denote
+the link-target where the browser shall jump when the appropriate
+link is clicked.
+
+
+Example:
+
+[source,html]
+----
+<a href="missing">missing link</a>  // <1>
+
+<h1 id="existing">Sample Header</h1> // <2>
+<a href="existing"> jump to the sample header</a> //<3>
+----
+
+<1> This link tells the browser to jump to a location with `id="missing"` (which is missing in this document...)
+<2> The `id=...` attribute denotes a specific identification for an HTML element.
+<3> This `href`is an existing link target. 
+
+
 
 [[missing-local-resoures]]
 === Missing Local Resources
+TODO
 
 [[broken-external-links]]
 === Broken External Links
+kbd:[HtmlSC] does currently not support external link checking. 
+See https://github.com/aim42/htmlSanityCheck/issues/34[issue #34]
+
 
 [[ambiguous-link-targets]]
 === Ambiguous Link Targets
+TODO
+
 
 [[broken-image-maps]]
 === Broken ImageMaps
@@ -106,3 +134,4 @@ Several things could go wrong here:
 
 [[missing-alt-attributes]]
 === Missing Alt-Attributes (in Image-Tags)
+TODO
