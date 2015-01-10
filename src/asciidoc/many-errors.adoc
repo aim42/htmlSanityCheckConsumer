@@ -51,6 +51,11 @@ image:aim42-logo.png[aim-logo]
 Missing image::
 image:nonexisting-image.png[this image deliberately missing]
 
+Missing alt-attribute::
+++++
+<img src="images/aim42-logo.png" width="100">
+++++
+
 
 == Local Resources
 The term "Local Resources" refers to non-image files referenced
