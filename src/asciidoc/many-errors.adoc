@@ -25,23 +25,6 @@ Existing external link::
   points to https://github.com/aim42
 
 
-=== Background
-
-Html anchor tags contain href attributes, which denote
-the link-target (where the browser shall jump when the appropriate
-link is clicked).
-
-Example:
-
-[source,html]
-----
-<a href="missing">missing link</a>
-
-<h1 id="existing">Sample Header</h1>
-<a href="existing"> jump to the sample header</a>
-
-----
-
 
 
 [[duplicateId]]
