@@ -64,7 +64,27 @@ An image references a nonexisting map.
 === Ambigous Map-Name
 A map-name exists more than once.
 
-TODO: 
+++++
+<img src=".images/imageMap_1.jpg" alt="jpg1" usemap="#dupe">
+<map name="dupe">
+	<area shape=rect coords="11,36,79,92" href="#sample1">
+</map>
+<map name="dupe">
+	<area shape=rect coords="0,10,0,10" href="#sample2">
+</map>
+++++
+
+[source,html]
+.duplicate map name 
+----
+<map name="dupe">
+	<area shape=rect coords="11,36,79,92" href="#sample1">
+</map>
+<map name="dupe">
+	<area shape=rect coords="0,10,0,10" href="#sample2">
+</map>
+----
+ 
 
 === Empty Map
 No area-tag defined for map.
