@@ -43,6 +43,7 @@ Another file is provided, error-free:
  ./src/asciidoc/no-errors.adoc
 ----
 
+
 == Types of Errors Checked by kbd:[htmlSC]
 
 - [x] <<missing-images, Missing Images>>
@@ -97,9 +98,29 @@ See https://github.com/aim42/htmlSanityCheck/issues/34[issue #34]
 
 [[ambiguous-link-targets]]
 === Ambiguous Link Targets
-TODO
+[small]#(synonym: duplicate ids)#
 
+If a link target (id-attribute) occures more than once,
+the browser cannot determine where to jump.
 
+Example:
+
+[source,html]
+----
+<a href="#dupeTarget">duplicate Target</a>  // <1>
+
+<h2 id="dupeTarget">One Header</h2> // <2>
+... some text
+
+<h2 id="dupeTarget">Another Header</h2> // <3>
+... some more text
+----
+
+<1> a link with link-target 'dupeTarget'
+<2> One header with id 'dupeTarget'
+<3> Another header with the same id
+
+ 
 [[broken-image-maps]]
 === Broken ImageMaps
 ImageMaps allow parts of an image to be used as hyperlinks to arbitrary targets. 
