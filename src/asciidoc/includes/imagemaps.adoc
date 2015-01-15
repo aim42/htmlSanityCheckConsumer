@@ -64,6 +64,10 @@ An image references a nonexisting map.
 === Ambigous Map-Name
 A map-name exists more than once.
 
+////
+TODO: create an image for this case
+////
+
 ++++
 <img src=".images/imageMap_1.jpg" alt="jpg1" usemap="#dupe">
 <map name="dupe">
@@ -73,6 +77,7 @@ A map-name exists more than once.
 	<area shape=rect coords="0,10,0,10" href="#sample2">
 </map>
 ++++
+
 
 [source,html]
 .duplicate map name 
@@ -87,9 +92,18 @@ A map-name exists more than once.
  
 
 === Empty Map
-No area-tag defined for map.
+No area-tag defined for an imageMap. That's the equivalent to
+having just the image - but why did we introduce the map-construct?
 
-TODO: 
+
+[source,html]
+.empty map 
+----
+<map name="empty">
+
+</map>
+----
+
 
 === Broken Link in ImageMap
 A link (href) within an area-tag is broken
