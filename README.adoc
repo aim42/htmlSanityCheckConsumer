@@ -7,8 +7,8 @@
 
 
 image:http://img.shields.io/:license-ccsa4-green.svg[link="https://creativecommons.org/licenses/by-sa/4.0/"^]
-image:http://img.shields.io/github/issues/aim42/htmlsanitycheckConsumer.svg[issues]
-
+image:http://img.shields.io/github/issues/aim42/htmlsanitycheckConsumer.svg[link="https://github.com/aim42/htmlSanityCheckConsumer/issues"]
+image:https://badge.waffle.io/aim42/htmlSanityCheckConsumer.svg?label=bug&title=Bugs)[Bugs] 
 
 A demo for the https://github.com/aim42/htmlSanityCheck[htmlSanityCheck] 
 Gradle plugin.
