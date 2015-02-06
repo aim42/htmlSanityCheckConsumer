@@ -12,38 +12,46 @@ in the asciidoc source. It shall be used to test the htmlSanityChecker.
 [[first]]
 == Wrong Cross References
 
+=== Existing and Nonexisting Targets
+
+
+[source,asciidoc]
+.Wrong Cross References
+----
+[[first]]
+== Wrong Cross References
 
 === Existing and Nonexisting Targets
-* item one
-* item two
 
-Correct link::
-  <<first, goto first>> heading.
+*Correct link*: <<first, goto first>> heading. // <1>
 
-Wrong (non-existing) cross-reference::
-  points to <<nowhere>>
+*Wrong (non-existing) cross-reference*: points to <<nowhere>> // <2>
+----
 
-Existing external link::
-  points to https://github.com/aim42
+<1> *Correct link*: <<first, goto first>> heading.
+
+<2> *Wrong (non-existing) cross-reference*: points to <<nowhere>>
+(target 'nowhere' does not exist)
 
 
 [[only-legal]]
 === Illegal Characters in Cross Reference
 
-It's a bad idea to include <<illegal characters>>, 
-like " " (blank) in links.
-
-Better idea: omit <<only-legal, them>>
-
 [source,asciidoc]
+.Illegal Characters in Cross Reference
 ----
-It's a bad idea to include <<illegal characters>>, // <1> 
+It's a bad idea to include <<illegal characters>>, // <1>
 like " " (blank) in links.
 
-Better idea: omit <<only-legal, them>>
+Better idea: omit <<only-legal, them>> // <2>
 ----
+
+It's a bad idea to include <<illegal characters>>,
+like " " (blank) in links.
 
 <1> blank in link source (betwenn "illegal" and "characters")
+
+<2> Better idea: omit <<only-legal, them>>
 
 
 [[duplicateId]]
