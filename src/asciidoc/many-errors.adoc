@@ -56,17 +56,35 @@ like " " (blank) in links.
 
 [[duplicateId]]
 == Duplicate Definitions
-
-. point one
-. point two
-
-Linking to a duplicate definition::
-<<duplicate, this link>> does not know where to take you....
-
+This heading has the id "duplicateId"...
 
 [[duplicateId]]
 === Another Heading, Same id...
+This paragraph also has the "duplicateId" ...
+
+
+[source, asciidoc]
+----
+[[duplicateId]]
+== Duplicate Definitions
+
+Linking to a duplicate definition::
+<<duplicateId, this link>> // <1>
+does not know where to take you....
+
+
+[[duplicateId]]          // <2>
+=== Another Heading, Same id...
 This paragraph also has the "duplicate" id...
+
+----
+
+<1> a link to a named HTML element
+<2> the duplicate definition of the link target.
+
+Linking to a duplicate definition::
+<<duplicateId, this link>> does not know where to take you....
+
 
 
 
