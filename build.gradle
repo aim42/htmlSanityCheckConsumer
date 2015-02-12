@@ -23,7 +23,7 @@ buildscript {
 
         classpath (group: 'org.asciidoctor',
                     name: 'asciidoctor-gradle-plugin',
-                    version: '1.5.0')
+                    version: '1.5.2')
     }
 }
 
@@ -51,16 +51,17 @@ def checkingResultsPath = "$buildDir/report/htmlchecks"
 // ==== asciidoctor ==========
 // ===========================
 
-apply plugin: 'org.asciidoctor.gradle.asciidoctor'
+apply plugin: 'org.asciidoctor.convert'
 
 asciidoctor {
     outputDir = new File( htmlOutputPath )
     sourceDir = new File( asciidocSrcPath )
-    options = [
-            attributes: [
-                    imagesdir   : 'images'
-            ]
-    ]
+
+    options backends: ['html5'],
+            doctype: 'book',
+            icons: 'font',
+            sectlink: true,
+            sectanchors: true
 
 }
 
