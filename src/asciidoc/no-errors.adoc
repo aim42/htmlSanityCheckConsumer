@@ -41,3 +41,8 @@ Authored by Dr. Gernot Starke <gernot.starke@innoq.com>
 <2> the actual map, defining a number of click-sensitive
 <3> areas on the image together with the respective link targets.
 
+
+=== Regressions
+
+==== Issue #82, ÜÖÄ Umlaut in Heading Breaks htmlSanityCheck
+https://github.com/aim42/htmlSanityCheck/issues/82[Github issue #82]
