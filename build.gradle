@@ -1,25 +1,15 @@
 
 buildscript {
     repositories {
-        maven {
-            url uri('../repo')
-        }
+        mavenLocal()
         jcenter()
-        maven {
-            name 'Bintray Asciidoctor repo'
-            url  'http://dl.bintray.com/content/aalmiray/asciidoctor'
-        }
-//        maven {
-//            name 'Bintray HtmlSanityCheck repo'
-//            url 'http://dl.bintray.com/content/gernotstarke/HtmlSanityCheck'
-//        }
         mavenCentral()
     }
 
     dependencies {
         classpath (group: 'org.aim42',
                 name: 'htmlSanityCheck',
-                version: '0.9.1-SNAPSHOT')
+                version: '0.9.2-SNAPSHOT')
 
         classpath (group: 'org.asciidoctor',
                     name: 'asciidoctor-gradle-plugin',
@@ -64,25 +54,15 @@ asciidoctor {
             sectlink: true,
             sectanchors: true
 
+    resources {
+        from( srcImagesPath )
+        into targetImagesPath
+    }
+
+
 }
 
-
-// ==== copy images into build/docs directory =====
-task copyImages(
-        type: Copy,
-        description: 'copy images into build output folder'
-) {
-    from srcImagesPath
-    into targetImagesPath
-    include( '**/*.jpg', '**/*.png', '**/*.svg')
-}
-
-
-
-
-copyImages.mustRunAfter asciidoctor
-
-
+// ========================================================
 apply plugin: 'org.aim42.htmlSanityCheck'
 
 
@@ -91,8 +71,7 @@ htmlSanityCheck {
     // ensure asciidoctor->html runs first
     // and images are copied to build directory
 
-    // comment next line to allow checking of other files..
-    dependsOn asciidoctor, copyImages
+    dependsOn asciidoctor
 
     sourceDir = new File( htmlOutputPath )
 
@@ -106,6 +85,10 @@ htmlSanityCheck {
     // true:  also check external (e.g. http, https...) links.
     checkExternalLinks = false
 }
+
+
+// when called without arguments, gradle will execute the default:
+defaultTasks 'htmlSanityCheck'
 
 
 task info(
