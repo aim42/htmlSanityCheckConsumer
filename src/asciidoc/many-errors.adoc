@@ -25,13 +25,19 @@ in the asciidoc source. It shall be used to test the htmlSanityChecker.
 
 *Correct link*: <<first, goto first>> heading. // <1>
 
-*Wrong (non-existing) cross-reference*: points to <<nowhere>> // <2>
+*Wrong (non-existing) cross-reference*: points to <<nowere>> // <2>
 ----
 
 <1> *Correct link*: <<first, goto first>> heading.
 
-<2> *Wrong (non-existing) cross-reference*: points to <<nowhere>>
-(target 'nowhere' does not exist)
+<2> *Wrong (non-existing) cross-reference*: points to <<nowere>>,
+link target 'nowhere' does not exist. In such cases, the checker looks
+for suggestions.
+
+
+[[nowhere]]
+We have a target names "nowhere" - spelled quite similar
+to the "nowere" from above.
 
 
 [[only-legal]]
@@ -90,16 +96,45 @@ Linking to a duplicate definition::
 
 == Images
 
+=== Existing Image
 Existing image::
 image:aim42-logo.png[aim-logo]
 
+=== Missing Image
+In case of missing images, suggestions shall be given:
+
+* If image files are found on the image-path, suggestions are taken from these names
+* in case of no images, that fact is reported, but no suggestions are given
+
 Missing image::
+The image with filename "nonexisting-image.png" is referenced, but missing.
 image:nonexisting-image.png[this image deliberately missing]
 
+==== Suggesting Image File Names
+In case we reference a (nonexisting) image, the image directory
+shall be scanned for suggestions.
+
+image:hsc-logo-sate.png[missing hsc-logo-sate.png]
+
+Here we reference a file named "hsc-logo-sate.png", in the image directory
+we have the following (with the last beeing the best suggestion):
+
+* aim42-logo.png
+* hsc-logo-brownish.png
+* hsc-logo-light.png
+* hsc-logo-shade.png
+
+
+
+
+=== Missing Alt Attribute
+This error shall only be reported, no suggestion shall be given.
 Missing alt-attribute::
 ++++
 <img src="images/aim42-logo.png" width="100">
 ++++
+
+
 
 
 == Local Resources
@@ -112,8 +147,8 @@ referenced from anchor-tags, like the following:
 [source,html]
 ----
 <a href="file.html">File</a> <!-- <1>-->
----- 
-   
-    
+----
+
+
 
 include::includes/imagemaps.adoc[]
