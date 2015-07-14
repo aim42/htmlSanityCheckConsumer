@@ -5,45 +5,49 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
-        jcenter()
     }
-
     dependencies {
         // in case of mavenLocal(), the following line is valid:
-        classpath (group: 'org.aim42',
+        classpath(group: 'org.aim42',
 
-        // in case of using the official Gradle plugin repository:
-        //classpath (group: 'gradle.plugin.org.aim42',
+                // in case of using the official Gradle plugin repository:
+                //classpath (group: 'gradle.plugin.org.aim42',
                 name: 'htmlSanityCheck',
                 version: '0.9.5-SNAPSHOT')
 
-        classpath (group: 'org.asciidoctor',
-                    name: 'asciidoctor-gradle-plugin',
-                    version: '1.5.2')
     }
 }
 
+plugins {
+    id 'org.asciidoctor.convert' version '1.5.2'
+}
+
+project.version = "0.2"
+
+
 // ==== path definitions =====
 // ===========================
+ext {
+    srcDir = "$projectDir/src/asciidoc"
 
-// location of AsciiDoc files
-def asciidocSrcPath = "$projectDir/src/asciidoc"
+    // location of AsciiDoc files
+    asciidocSrcPath = "$projectDir/src/asciidoc"
 
 // location of images used in AsciiDoc documentation
-def srcImagesPath = "$asciidocSrcPath/images"
+    srcImagesPath = "$asciidocSrcPath/images"
 
 // results of asciidoc compilation (HTML)
 // (input for htmlSanityCheck)
 // this is the default path for asciidoc-gradle-convert
-def htmlOutputPath = "$buildDir/asciidoc/html5"
+    htmlOutputPath = "$buildDir"
 
 // images used by generated html
-def targetImagesPath =   htmlOutputPath + "/images"
+    targetImagesPath = "$buildDir/images"
 
 // where HTMLSanityCheck checking results ares stored
-def checkingResultsPath = "$buildDir/report/htmlchecks"
+    checkingResultsPath = "$buildDir/report/htmlchecks"
 
-
+}
 
 // ==== asciidoctor ==========
 // ===========================
@@ -51,18 +55,22 @@ def checkingResultsPath = "$buildDir/report/htmlchecks"
 apply plugin: 'org.asciidoctor.convert'
 
 asciidoctor {
-//    outputDir = new File( htmlOutputPath )
-    sourceDir = new File( asciidocSrcPath )
+    outputDir = file(buildDir)
+    sourceDir = file(srcDir)
 
-    options backends: ['html5'],
-            doctype: 'book',
-            icons: 'font',
-            sectlink: true,
-            sectanchors: true
+    sources {
+        include "many-errors.adoc", "no-errors.adoc"
+    }
+
+    attributes = [
+            doctype    : 'book',
+            icons      : 'font',
+            sectlink   : true,
+            sectanchors: true]
 
     resources {
-        from( srcImagesPath )
-        into targetImagesPath
+        from(srcImagesPath) { include '**' }
+        into "./images"
     }
 
 
@@ -79,19 +87,18 @@ htmlSanityCheck {
 
     dependsOn asciidoctor
 
-    sourceDir = new File( htmlOutputPath )
+    sourceDir = new File("${buildDir}/html5")
 
     // files to check, in Set-notation
-    sourceDocuments = [ "many-errors.html", "no-errors.html"]
+    sourceDocuments = ["many-errors.html", "no-errors.html"]
 
     // where to put results of sanityChecks...
-    checkingResultsDir = new File( checkingResultsPath )
+    checkingResultsDir = new File(checkingResultsPath)
 
     // false: restrict checks to local resources
     // true:  also check external (e.g. http, https...) links.
     checkExternalLinks = false
 }
-
 
 // when called without arguments, gradle will execute the default:
 defaultTasks 'htmlSanityCheck'
@@ -104,7 +111,7 @@ task info(
             println "project.name         : " + project.name
             println "projectDir           : " + projectDir
             println "buildDir             : " + buildDir
-            println "="*100
+            println "=" * 100
             println "asciidoc src files   : " + asciidocSrcPath
             println "source images        : " + srcImagesPath
             println "asciidoc html output : " + htmlOutputPath
