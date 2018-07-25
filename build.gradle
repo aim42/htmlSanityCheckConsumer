@@ -13,13 +13,13 @@ buildscript {
                 // in case of using the official Gradle plugin repository:
                 //classpath (group: 'gradle.plugin.org.aim42',
                 name: 'htmlSanityCheck',
-                version: '0.9.8-SNAPSHOT')
+                version: '0.9.8')
 
     }
 }
 
 plugins {
-    id 'org.asciidoctor.convert' version '1.5.2'
+    id 'org.asciidoctor.convert' version '1.5.8'
 }
 
 project.version = "0.2"
@@ -106,7 +106,7 @@ defaultTasks 'htmlSanityCheck'
 
 task info(
         description: "info on several paths"
-) <<
+) { doLast
         {
             println "project.name         : " + project.name
             println "projectDir           : " + projectDir
@@ -118,3 +118,4 @@ task info(
             println "target images path   : " + targetImagesPath
             println "checkingResultsPath  : " + checkingResultsPath
         }
+}
