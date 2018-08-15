@@ -60,6 +60,22 @@ like " " (blank) in links.
 <2> Better idea: omit <<only-legal, them>>
 
 
+== External Links
+
+This is a link to https://arc42.org[arc42.org] (which should be valid,
+  if there's an Internet connection available).
+
+=== Broken HTTP Links
+This is a link to https://nonexisting.arc42.org[nonexisting website],
+which should be invalid and return a 404 response.
+
+To make sure, we check a few other codes:
+
+* https://httpstat.us/200[200, should be ok]
+* https://httpstat.us/300[300, multiple choices (should be a warning!)]
+* https://httpstat.us/404[404, error: not found]
+* https://httpstat.us/503[503, error: service unavailable]
+
 [[duplicateId]]
 == Duplicate Definitions
 This heading has the id "duplicateId"...
@@ -123,8 +139,6 @@ we have the following (with the last beeing the best suggestion):
 * hsc-logo-brownish.png
 * hsc-logo-light.png
 * hsc-logo-shade.png
-
-
 
 
 === Missing Alt Attribute

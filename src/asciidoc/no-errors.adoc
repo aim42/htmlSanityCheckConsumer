@@ -26,11 +26,11 @@ Authored by Dr. Gernot Starke <gernot.starke@innoq.com>
 
 
 [target]
-=== Target 
+=== Target
 
 [source, html]
 ----
-<img border=0 src="imageMap_1.jpg" usemap="#GraffleExport">  //<1> 
+<img border=0 src="imageMap_1.jpg" usemap="#GraffleExport">  //<1>
 <map name="GraffleExport">  //<2>
 	<area shape=rect coords="127,123,212,183" href="#target"> // <3>
 	<area shape=rect coords="11,36,79,92" href="#sample">
@@ -41,6 +41,12 @@ Authored by Dr. Gernot Starke <gernot.starke@innoq.com>
 <2> the actual map, defining a number of click-sensitive
 <3> areas on the image together with the respective link targets.
 
+
+=== HTTP Links
+This is a link to https://arc42.org[arc42.org] (which should be valid,
+  if there's an Internet connection available).
+
+Another one is https://httpstat.us/200,  which should be ok too.
 
 === Regressions
 

@@ -13,7 +13,7 @@ buildscript {
                 // in case of using the official Gradle plugin repository:
                 //classpath (group: 'gradle.plugin.org.aim42',
                 name: 'htmlSanityCheck',
-                version: '0.9.8')
+                version: '1.0.0-RC-1')
 
     }
 }
@@ -22,7 +22,7 @@ plugins {
     id 'org.asciidoctor.convert' version '1.5.8'
 }
 
-project.version = "0.2"
+project.version = "0.3.0"
 
 
 // ==== path definitions =====
@@ -95,9 +95,9 @@ htmlSanityCheck {
     // where to put results of sanityChecks...
     checkingResultsDir = new File(checkingResultsPath)
 
-    // false: restrict checks to local resources
-    // true:  also check external (e.g. http, https...) links.
-    checkExternalLinks = false
+    // fail the build if any error is encountered
+    failOnErrors = false
+
 }
 
 // when called without arguments, gradle will execute the default:
