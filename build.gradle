@@ -13,7 +13,7 @@ buildscript {
                 // in case of using the official Gradle plugin repository:
                 //classpath (group: 'gradle.plugin.org.aim42',
                 name: 'htmlSanityCheck',
-                version: '1.0.0-RC-1')
+                version: '1.0.0-RC-2')
 
     }
 }
@@ -43,9 +43,6 @@ ext {
 
 // images used by generated html
     targetImagesPath = "$buildDir/images"
-
-// where HTMLSanityCheck checking results ares stored
-    checkingResultsPath = "$buildDir/report/htmlchecks"
 
 }
 
@@ -92,11 +89,15 @@ htmlSanityCheck {
     // files to check, in Set-notation
     sourceDocuments = ["many-errors.html", "no-errors.html"]
 
-    // where to put results of sanityChecks...
-    checkingResultsDir = new File(checkingResultsPath)
-
     // fail the build if any error is encountered
     failOnErrors = false
+
+    // set the http connection timeout to 2 secs
+    httpConnectionTimeout = 2000
+
+    ignoreLocalHost = false
+    ignoreIPAddresses = false
+
 
 }
 
@@ -116,6 +117,5 @@ task info(
             println "source images        : " + srcImagesPath
             println "asciidoc html output : " + htmlOutputPath
             println "target images path   : " + targetImagesPath
-            println "checkingResultsPath  : " + checkingResultsPath
         }
 }
