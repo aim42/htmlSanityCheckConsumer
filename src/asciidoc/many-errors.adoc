@@ -74,6 +74,7 @@ To make sure, we check a few other codes:
 * https://httpstat.us/200[200, should be ok]
 * https://httpstat.us/300[300, multiple choices (should be a warning!)]
 * https://httpstat.us/404[404, error: not found]
+* https://httpstat.us/404[same url, second try]
 * https://httpstat.us/503[503, error: service unavailable]
 
 [[duplicateId]]
