@@ -13,7 +13,7 @@ buildscript {
                 // in case of using the official Gradle plugin repository:
                 //classpath (group: 'gradle.plugin.org.aim42',
                 name: 'htmlSanityCheck',
-                version: '1.0.0-RC-1')
+                version: '1.0.0-RC-2')
 
     }
 }
@@ -97,6 +97,17 @@ htmlSanityCheck {
 
     // fail the build if any error is encountered
     failOnErrors = false
+
+    // http connection timeout in milliseconds
+    httpConnectionTimeout = 5000
+
+    // which statuscodes shall be interpreted as warning, error or success
+    // defaults to standard
+    httpWarningCodes = [401]
+    // httpErrorCodes
+    // httpSuccessCodes
+
+
 
 }
 

@@ -55,7 +55,7 @@ Better idea: omit <<only-legal, them>> // <2>
 It's a bad idea to include <<illegal characters>>,
 like " " (blank) in links.
 
-<1> blank in link source (betwenn "illegal" and "characters")
+<1> blank in link source (between "illegal" and "characters")
 
 <2> Better idea: omit <<only-legal, them>>
 
@@ -66,15 +66,20 @@ This is a link to https://arc42.org[arc42.org] (which should be valid,
   if there's an Internet connection available).
 
 === Broken HTTP Links
+
+==== Unknown Host
 This is a link to https://nonexisting.arc42.org[nonexisting website],
 which should be invalid and return a 404 response.
 
-To make sure, we check a few other codes:
+==== Other (bad) links
+To make sure, we check a few other StatusCodes:
 
 * https://httpstat.us/200[200, should be ok]
 * https://httpstat.us/300[300, multiple choices (should be a warning!)]
 * https://httpstat.us/404[404, error: not found]
+* https://httpstat.us/405[405, error: not allowed]
 * https://httpstat.us/503[503, error: service unavailable]
+
 
 [[duplicateId]]
 == Duplicate Definitions
