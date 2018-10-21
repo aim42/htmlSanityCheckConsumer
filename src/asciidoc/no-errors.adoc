@@ -24,8 +24,37 @@ Authored by Dr. Gernot Starke <gernot.starke@innoq.com>
 </map>
 ++++
 
+A rather<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+long<br>
+list, so that one can see the scrolling in the browser...
 
-[target]
+=== First Unused Section
+
+=== Second Unused Section
+
+=== Third Unused Section
+
+[#sample]
+=== Sample
+When you clicked on the (grey) "sample" rectangle in the image above,
+this section should be selected.
+
+[#target]
 === Target
 
 [source, html]
