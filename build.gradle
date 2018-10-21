@@ -22,19 +22,16 @@ plugins {
     id 'org.asciidoctor.convert' version '1.5.8'
 }
 
-project.version = "0.3.0"
+project.version = "0.3.2"
 
 
 // ==== path definitions =====
 // ===========================
 ext {
-    srcDir = "$projectDir/src/asciidoc"
-
-    // location of AsciiDoc files
-    asciidocSrcPath = "$projectDir/src/asciidoc"
+    srcDir = "$projectDir/src/docs/asciidoc"
 
 // location of images used in AsciiDoc documentation
-    srcImagesPath = "$asciidocSrcPath/images"
+    srcImagesPath = "$srcDir/images"
 
 // results of asciidoc compilation (HTML)
 // (input for htmlSanityCheck)
@@ -109,11 +106,10 @@ task info(
         description: "info on several paths"
 ) { doLast
         {
+            println "=" * 100
             println "project.name         : " + project.name
             println "projectDir           : " + projectDir
             println "buildDir             : " + buildDir
-            println "=" * 100
-            println "asciidoc src files   : " + asciidocSrcPath
             println "source images        : " + srcImagesPath
             println "asciidoc html output : " + htmlOutputPath
             println "target images path   : " + targetImagesPath
