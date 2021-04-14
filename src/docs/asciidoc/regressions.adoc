@@ -1,0 +1,26 @@
+= Regression tests
+:experimental:
+
+// where are images located?
+:imagesdir: ./images
+
+
+[.lead]
+This document contains some regression tests.
+Authored by Dr. Gernot Starke <gernot.starke@innoq.com>
+
+
+
+=== Issue Nr 272
+
+These regressions originate from the Randoop tool for generating test cases.
+
+This is a link to https://douglascayers.com/2015/05/30/h[Douglas Cayers] (which should be valid), but has been reported to cause an "unknown host exception" in htmlSanityCheck versions 1.1.0 and below.
+
+Other suspicious links in this context were (taken from the Randoop documentation):
+
+* http://junit.sourceforge.net/javadoc/org/junit/Before.html[from JUnit]
+* http://plumelib.org/plume-util/api/org/plumelib/util/DeterministicObject.html[from Plume-Util]
+* http://people.csail.mit.edu/cpacheco/publications/randoop-case-study-abstract.html[from Randoop]
+
+
