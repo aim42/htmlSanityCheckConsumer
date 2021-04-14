@@ -13,7 +13,7 @@ buildscript {
                 // in case of using the official Gradle plugin repository:
                 //classpath (group: 'gradle.plugin.org.aim42',
                 name: 'htmlSanityCheck',
-                version: '1.0.0-RC-2')
+                version: '1.1.4')
 
     }
 }
@@ -22,7 +22,7 @@ plugins {
     id 'org.asciidoctor.convert' version '1.5.8'
 }
 
-project.version = "0.3.2"
+project.version = "0.4.1"
 
 
 // ==== path definitions =====
@@ -53,7 +53,7 @@ asciidoctor {
     sourceDir = file(srcDir)
 
     sources {
-        include "many-errors.adoc", "no-errors.adoc"
+        include "many-errors.adoc", "no-errors.adoc", "regressions.adoc"
     }
 
     attributes = [
@@ -83,9 +83,10 @@ htmlSanityCheck {
 
     sourceDir = new File("${buildDir}/html5")
 
-    // files to check, in Set-notation
-    sourceDocuments = ["many-errors.html", "no-errors.html"]
-
+    // files to check
+    sourceDocuments = fileTree(sourceDir) {
+        include "no-errors.html", "many-errors.html", "regressions.html"
+    }
     // fail the build if any error is encountered
     failOnErrors = false
 
